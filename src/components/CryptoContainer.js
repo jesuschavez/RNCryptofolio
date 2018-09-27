@@ -17,7 +17,14 @@ class CryptoContainer extends Component {
         //this props holds the data that was fetched
         const { crypto } = this.props;
         return crypto.data.map((coin) =>
-          
+          <CoinCard
+            key={coin.name}
+            coin_name={coin.name}
+            symbol={coin.symbol}
+            price_usd={coin.price_usd}
+            percent_change_24h={coin.percent_change_24h}
+            percent_change_7d={coin.percent_change_7d}
+          />
         )
     }
 
@@ -30,7 +37,12 @@ class CryptoContainer extends Component {
         if (crypto.isFetching) {
             return (
                 <View>
-
+                  <Spinner
+                    visible={crypto.isFetching}
+                    textContent={"Loading..."}
+                    textStyle={{ color: '#253145' }}
+                    animation="fade"
+                  />
                 </View>
             )
         }
